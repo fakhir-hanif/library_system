@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="page-header"></div>
+    <div class="panel panel-default">
+        <div class="panel-heading"><h4>Below is the list of All racks having books.</h4></div>
+    </div>
+
+    <div>
+        <table class="table table-striped table-hover">
+            <caption>List of Racks</caption>
+            <thead class="black white-text" style="color: white; background: #00264d; ">
+                <tr>
+                    <th>
+                        #
+                    </th>
+                    <th>
+                        Rack
+                    </th>
+                    <th>
+                        Number of books
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rack in racks %}
+                    <tr>
+                        <td> <a href="/library/rack/{{ rack.rack_id }}/" >{{ forloop.counter }}</a> </td>
+                        <td> <a href="/library/rack/{{ rack.rack_id }}/" >{{ rack.rack_name }}</a> </td>
+                        <td> <a href="/library/rack/{{ rack.rack_id }}/" >{{ rack.books }}</a> </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br><br>
+    <div id="result"></div>
+{% endblock %}
+
+
+

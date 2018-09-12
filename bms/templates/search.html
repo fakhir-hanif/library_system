@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="page-header"></div>
+    <div class="panel panel-default">
+        <div class="panel-heading"><h4>Type Book Name, Author Name, pulished date to search books</h4></div>
+    </div>
+
+    <div>
+         <form action="/library/search/" id="form" method="post" role="form">
+            <div class="form-row">
+                <div class="col">
+                    <input class="form-control" type="text" name="search" size="20" placeholder="Book Name, Author, Published">
+                </div>
+                <!--<div class="col">-->
+                    <!--<input type="submit" value="Search" id="submit" class="btn btn-primary form-control"/>-->
+                <!--</div>-->
+            </div>
+            {% csrf_token %}
+
+        </form>
+        {% if searched_res %}
+        <div>
+            <table class="table table-striped table-hover">
+                <caption>List of Books</caption>
+                <thead class="black white-text" style="color: white; background: #00264d; ">
+                    <tr>
+                        <th>
+                            #
+                        </th>
+                        <th>
+                            Book
+                        </th>
+                        <th>
+                            Author
+                        </th>
+                        <th>
+                            Published In
+                        </th>
+                        <th>
+                            Available Racks
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in searched_res %}
+                        <tr>
+                            <td> {{ forloop.counter }} </td>
+                            <td> {{ book.name }} </td>
+                            <td> {{ book.author }} </td>
+                            <td> {{ book.published }} </td>
+                            <td> {{ book.rack }} </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+    </div>
+    <br><br>
+    <div id="result"></div>
+{% endblock %}
+
+
+
